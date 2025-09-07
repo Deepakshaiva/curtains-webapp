@@ -2,9 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/email": "pages/email.js",
-  "/about/our-team": "pages/about/our-team.js",
-  "/about/mission": "pages/about/mission.js",
-  "/services/order-tracking": "pages/services/order-tracking.js"
+  "/": "pages/index.js"
 }

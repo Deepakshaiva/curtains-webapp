@@ -14,3 +14,7 @@ logs/
 # Build outputs
 dist/
 build/
+
+# next.js build directory
+.next/
+
