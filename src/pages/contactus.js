@@ -94,11 +94,11 @@ export default function ContactUs() {
           </div>
           <div>
             <h3 className="font-semibold">📞 Phone</h3>
-            <p className="text-gray-600">+91 00000 00000</p>
+            <p className="text-gray-600">+91 7415980071</p>
           </div>
           <div>
             <h3 className="font-semibold">📧 Email</h3>
-            <p className="text-gray-600">support@yourcompany.com</p>
+            <p className="text-gray-600">support@govenue.in</p>
           </div>
         </div>
       </div>
