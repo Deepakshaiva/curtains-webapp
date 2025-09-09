@@ -25,9 +25,9 @@ export default function Location() {
 
         <div className={styles.addressCard}>
           <h2>Our Address</h2>
-          <p>123 HomeStyle Street, Mysore, India</p>
-          <p>Phone: +91 80888 95956</p>
-          <p>Email: <a href="mailto:support@homies.com">support@homies.com</a></p>
+          <p>Main Road Thatipur, Gwalior, India</p>
+          <p>Phone: +91 7415980071</p>
+          <p>Email: <a href="mailto:support@govenue.com">support@govenue.in</a></p>
         </div>
       </main>
     </div>
