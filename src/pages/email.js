@@ -14,7 +14,7 @@ export default function Email() {
         <div className={styles.contactCard}>
           <div className={styles.icon}>📧</div>
           <h2>Support Email</h2>
-          <p>You can reach us at: <a href="mailto:support@homies.com">support@homies.com</a></p>
+          <p>You can reach us at: <a href="mailto:support@govenue.in">support@govenue.in</a></p>
           <p>We usually respond within 24 hours.</p>
         </div>
 
