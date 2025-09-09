@@ -73,7 +73,7 @@ export const AllCategoryList = () => {
               <p className="arrow">
                 <GoArrowDownRight />
               </p>
-              <div class="content">
+              <div className="content">
                 <h1
                   className={`title ${
                     selectedCategory === "FitCheck" ? "active-title" : ""
@@ -88,7 +88,7 @@ export const AllCategoryList = () => {
         </Swiper>
 
         <ProductsCard hoverActive={"none"} changeHoverStyle={"true"}/>
-        <div class="holographic-card">
+        <div className="holographic-card">
           <h2>View All</h2>
         </div>
       </div>
