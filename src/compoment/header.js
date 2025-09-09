@@ -69,7 +69,7 @@ const NavItem = styled.div`
   }
 
   &:hover > div,
-  & > div:hover {
+  {
     display: block;
   }
 `;
@@ -77,7 +77,7 @@ const NavItem = styled.div`
 const Dropdown = styled.div`
   display: none;
   position: absolute;
-  top: 62px;
+  top: 40px;
   left: 0;
   background: #b28b5f;
   box-shadow: 6px 8px 8px rgb(0 0 0 / 65%);
@@ -115,7 +115,7 @@ const RightSection = styled.div`
     border: 1px solid #e5e6e7;
     border-radius: 30px;
     position: relative;
-    width: ${({ expanded }) => (expanded ? "350px" : "200px")};
+    width: ${({ $expanded }) => ($expanded ? "350px" : "200px")};
     transition: width 0.3s ease;
 
     input {
@@ -267,7 +267,7 @@ export const Header = () => {
   return (
     <HeaderWrapper id="header">
       <Container>
-        <Logo>Homies</Logo>
+        <Logo>GoVenue</Logo>
         <div className="nav-div">
           <Nav>
             {navItems.map((item) => (
@@ -296,7 +296,7 @@ export const Header = () => {
             ))}
           </Nav>
 
-          <RightSection expanded={searchExpanded}>
+          <RightSection $expanded={searchExpanded}>
             <div className="search-bar" onClick={() => setSearchExpanded(true)}>
               <input
                 type="text"
@@ -312,7 +312,7 @@ export const Header = () => {
               {userMenuOpen && (
                 <UserMenu>
                   <div className="welcome">Welcome</div>
-                  <button>Login /Signup</button>
+                  <Link href="/login">Login / Signup</Link>
                 </UserMenu>
               )}
             </div>
@@ -356,8 +356,10 @@ export const Header = () => {
             style={{ width: "100%", marginTop: "10px" }}
           />
           <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-            <FaShoppingCart />
-            <FaHeart />
+            <Link href = "curtains-webapp\src\pages\cart.js">
+              <FaShoppingCart />
+            </Link>
+              <FaHeart />
             <FaUser />
           </div>
         </MobileMenu>
