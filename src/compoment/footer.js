@@ -107,7 +107,7 @@ export const Footer = () => {
     <FooterWrapper>
       <div className="container footer">
         <div className="footer-column">
-          <h2 className="logo">Homies</h2>
+          <h2 className="logo">Govenue</h2>
 
           <p>
             We provide quality products and services to make your life better.
@@ -115,12 +115,12 @@ export const Footer = () => {
         </div>
 
         <div className="footer-column">
-          <h3>Services</h3>
+          <h3>More Info</h3>
           <ul>
-            <li>Web Development</li>
-            <li>App Development</li>
-            <li>UI/UX Design</li>
-            <li>Digital Marketing</li>
+            <li>T&C</li>
+            <li>Privacy Policy</li>
+            <li>Blogs</li>
+            <li>Gift Vouchers</li>
           </ul>
         </div>
 
@@ -129,20 +129,21 @@ export const Footer = () => {
           <ul className="contact-list">
             <li className="contact-item">
               {" "}
-              <BiLogoFacebook />
-            </li>
-            <li className="contact-item">
-              {" "}
-              <TiSocialTwitter />
-            </li>
-            <li className="contact-item">
-              {" "}
+              <a href ="https://www.linkedin.com/company/go-venue/" target="_blank" rel="noopener noreferrer">
               <TiSocialLinkedin />
+              </a>
             </li>
-
             <li className="contact-item">
               {" "}
+              <a href ="https://twitter.com/GoVenue1" target="_blank" rel="noopener noreferrer">
+              <TiSocialTwitter />
+              </a>
+            </li>
+            <li className="contact-item">
+              {" "}
+              <a href ="https://www.facebook.com/GoVenue-104927303835707" target="_blank" rel="noopener noreferrer">
               <LiaInstagram />
+              </a>
             </li>
           </ul>
         </div>
