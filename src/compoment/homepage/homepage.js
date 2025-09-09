@@ -9,6 +9,9 @@ import { Layout } from "../layout";
 import { Autoplay, Parallax, Pagination, Navigation } from "swiper/modules";
 import { ProductsCard } from "../category-card/product-card";
 import { AllCategoryList } from "../all-category/all-category-list";
+import FirstTimeOffer from "../FirstTimeOffer";
+import ShopByCategory from "../ShopbyCategory";
+import FestivalPromotion from "../FestivalOffer";
 export const HomePageWrapper = styled.section`
 background-color: rgba(241,242,244,1.00);
   .swiper {
@@ -31,6 +34,7 @@ background-color: rgba(241,242,244,1.00);
   .hero-banner {
     width: 100%;
     height: 720px;
+    position: relative;
   }
   .hero-section {
     display: flex;
@@ -366,48 +370,11 @@ export const HomePage = ({ propsData }) => {
               ))}
           </Swiper>
         </div>
+       // curtains-webapp/src/compoment/homepage/homepage.js
         <div className="offer-container container">
-          <div className="offer-section">
-            <div className="offer-block">
-              <p className="heading">Get 10% OFF</p>
-              <span className="sub-heading">ON ORDERS OVER 399</span>
-            </div>
-            <div className="offer-block">
-              <p className="heading">Get 10% OFF</p>
-              <span className="sub-heading">ON ORDERS OVER 399</span>
-            </div>{" "}
-            <div className="offer-block">
-              <p className="heading">Get 10% OFF</p>
-              <span className="sub-heading">ON ORDERS OVER 399</span>
-            </div>{" "}
-            <div className="offer-block">
-              <button>Code:Discount</button>
-            </div>
-          </div>
-        </div>
-        <div className="offer-grid-container container">
-          <div className="offer-grid-section">
-            {propsData?.offergrid?.slice(0, 5).map((item, index) => (
-              <div
-                className={`offer-grid-block block-${index}`}
-                key={index}
-                style={index === 0 ? { gridRow: "1 / span 2" } : {}}
-              >
-                <div
-                  className="offer-bg"
-                  style={{
-                    backgroundImage: `url(https://drapestory.in/cdn/shop/files/Floral_d7910eac-be87-46ae-b460-cf03e2782be1_765x.png?v=1754019065)`,
-                  }}
-                >
-                  <div className="offer-overlay">
-                    <p className="offer-title">{item.title}</p>
-                    <span className="offer-subtitle">{item.subtitle}</span>
-                    <button className="offer-button">Shop Now</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FirstTimeOffer />
+          <ShopByCategory />
+          <FestivalPromotion />
         </div>
         <div className="products-container container">
           <h2 className="heading">New Arrivals</h2>
