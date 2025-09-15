@@ -1,93 +1,63 @@
 import styled from "styled-components";
-import { GoArrowDownRight } from "react-icons/go";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
-
-import { CiLocationArrow1 } from "react-icons/ci";
-
-// import required modules
-import { Pagination, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { ProductsCard } from "../category-card/product-card";
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { productData } from "../../lib/ProductData";
+
+// --- Mock Product Data ---
+// In a real app, this data would come from an API.
+const allProducts = {
+  curtains: [
+    { id: 1, name: "Floral Sheer Curtain", price: 4545, discount: 46, rating: 4.5, purchases: 320, image: "https://drapestory.in/cdn/shop/files/566A_1_jpg_765x.jpg?v=1713078931" },
+    { id: 2, name: "Linen Blackout Curtain", price: 5200, discount: 30, rating: 4.8, purchases: 450, image: "https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/s/a/sandscape.jpg" },
+    // Add more curtain products...
+  ],
+  fitCheck: [
+    { id: 3, name: "Modern Bedding Set", price: 8999, discount: 20, rating: 4.7, purchases: 180, image: "https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/a/f/african-vibes_theme_1920x1080-pix.jpg" },
+    { id: 4, name: "Bohemian Cushion Cover", price: 1500, discount: 15, rating: 4.6, purchases: 250, image: "https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/k/i/kilim_1920x1080-pix.jpg" },
+    // Add more fitCheck products...
+  ],
+};
+
+const categories = [
+  { id: 'curtains', name: 'Curtains' },
+  { id: 'fitCheck', name: 'FitCheck' },
+  // Add more categories here
+];
 
 export const AllCategoryList = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
+  const [activeCategory, setActiveCategory] = useState('curtains');
+
+  const displayedProducts = useMemo(() => {
+    return allProducts[activeCategory] || [];
+  }, [activeCategory]);
+
   return (
     <AllCaregoryWrapper>
       <div className="container all-category-list">
-        <h2 className="categories-title">Popular Brand Desgin & Products</h2>
+        <h2 className="categories-title">Popular Brand Design & Products</h2>
 
-        <Swiper
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            767: { slidesPerView: 6 },
-          }}
-          spaceBetween={20}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <div
-              className={`category-card`}
-              onClick={() => handleCategoryClick("Curtains")}
+        {/* New Filter Tabs */}
+        <div className="filter-tabs">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              className={`filter-btn ${activeCategory === category.id ? "active" : ""}`}
+              onClick={() => setActiveCategory(category.id)}
             >
-              <Image
-                src="https://cdn.ddecor.com/media/catalog/product/cache/5a8a2eba4362c3d73e0ba7a3dc93bcc7/2/1/213282_1_big.jpg"
-                className="category-img"
-                width={150}
-                height={150}
-                alt="product-image"
-              />
-              <p className="arrow">
-                <GoArrowDownRight />
-              </p>
-              <div class="content">
-                <h1
-                  className={`title ${
-                    selectedCategory === "Curtains" ? "active-title" : ""
-                  }`}
-                >
-                  curtain
-                </h1>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              className={`category-card`}
-              onClick={() => handleCategoryClick("FitCheck")}
-            >
-              <Image
-                src="https://cdn.ddecor.com/media/catalog/product/cache/5a8a2eba4362c3d73e0ba7a3dc93bcc7/2/1/213282_1_big.jpg"
-                className="category-img"
-                width={150}
-                height={150}
-                alt="product-image"
-              />
-              <p className="arrow">
-                <GoArrowDownRight />
-              </p>
-              <div className="content">
-                <h1
-                  className={`title ${
-                    selectedCategory === "FitCheck" ? "active-title" : ""
-                  }`}
-                >
-                  fitCheck
-                </h1>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Add more SwiperSlide items here with other categories */}
-        </Swiper>
+              {category.name}
+            </button>
+          ))}
+        </div>
 
-        <ProductsCard hoverActive={"none"} changeHoverStyle={"true"}/>
+        {/* The Product Card component will now need to accept a 'products' prop */}
+        {/* NOTE: You will need to update the ProductsCard component to handle this prop */}
+        <ProductsCard products={displayedProducts} hoverActive={"none"} changeHoverStyle={"true"} />
+
         <div className="holographic-card">
           <h2>View All</h2>
         </div>
@@ -99,44 +69,51 @@ export const AllCategoryList = () => {
 export const AllCaregoryWrapper = styled.section`
   padding: 40px 0px;
 
-
-  .content {
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .title {
-    font-size: 28px !important;
-    font-weight: 500 !important;
-    letter-spacing: normal;
-    position: relative;
-    overflow: hidden;
-    margin: 0;
-    color: #000;
+  .all-category-list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    color: #fff;
-   
-    transition: 1s;
- 
-    padding: 7px 10px;
-    color: #000;
+    gap: 30px;
+    background-color: #fff;     
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    padding: 40px 15px;
   }
-  .active-title {
-    transition: 0.5s !important;
-        background: #b28b5f;
-    box-shadow: 6px 6px 0 black;
-    transform: skewX(-15deg);
-    color: #fff;
+  
+  .categories-title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #424242;
+    text-align: center;
   }
 
-  @keyframes text-aurora {
-    0% {
-      background-position: 100% 0%;
+  // --- New Styles for Filter Tabs ---
+  .filter-tabs {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #e0e0e0;
     }
-    100% {
-      background-position: 0% 0%;
+
+    &.active {
+      background-color: #b28b5f;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -144,216 +121,31 @@ export const AllCaregoryWrapper = styled.section`
     padding: 5px 95px;
     height: 40px;
     background: #d5a303;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    overflow: hidden;
     border-radius: 15px;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     
-  }
-
-  .holographic-card h2 {
-    color: #fff;
-    font-size: 20px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .holographic-card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(0deg, transparent, transparent 30%, rgb(3 3 3));
-    transform: rotate(-45deg);
-    transition: all 0.5s ease;
-    opacity: 0;
-  }
-
-  .holographic-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #75695bff;
-  }
-
-  .holographic-card:hover::before {
-    opacity: 1;
-    transform: rotate(-45deg) translateY(100%);
-  }
-
-  .mySwiper {
-    width: 100%;
-    height: 250px;
-    position: relative;
-    background: none !important;
-  }
-
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  .swiper-slide {
-    color: #000 !important;
-    padding: 10px 0px !important;
-  }
-  .swiper-button-disabled {
-    display: none !important;
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    z-index: 10;
-    background: #fff;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    top: 40%;
-    color: #000;
-
-    &::after {
-      font-size: 20px;
-      font-weight: bold;
-    }
-  }
-
-  .swiper-button-next {
-    right: 2%;
-  }
-  .swiper-button-prev {
-    left: 2%;
-  }
-
-  .view-all-cat {
-    background: #bb9210;
-    padding: 7px 107px;
-    color: #fff;
-    font-size: 19px;
-    font-weight: 500;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    svg {
+    h2 {
       color: #fff;
       font-size: 20px;
-      font-weight: bolder;
-    }
-  }
-  .all-category-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    background-color: #fff;     
-   box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.1);
-   padding: 40px 0px 30px;
-  }
-  .categories-title {
-    font-size: 40px;
-    font-weight: 600;
-  }
-  .category-card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    position: relative;
-
-    .category-img {
-      width: 125px;
-      height: 125px;
-      object-fit: cover;
-      border-radius: 50%;
-      transition: transform 0.3s ease-in-out; // Smooth transition
     }
 
-    .arrow {
-      background-color: #b28b5f;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50px;
-      color: #fff;
-      font-size: 22px;
-      font-weight: 900;
-      position: absolute;
-      top: 45%;
-      right: 30px;
-      box-shadow: 1px 3px 0px 1px black;
-      transition: opacity 0.1s ease-in-out, visibility 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #75695bff;
     }
-    .cat-heading {
-      position: relative;
-      display: inline-block;
-      z-index: 1;
-    }
-
-    // Hover effect
   }
-   @media (max-width: 767px) {
-    padding: 20px 0;
 
+  @media (max-width: 767px) {
     .categories-title {
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 20px;
+      font-size: 28px;
     }
-
-    .all-category-list {
-      gap: 25px;
-    }
-
-    .mySwiper {
-      height: auto;
-      padding-bottom: 15px;
-    }
-
-
-
-    .category-card {
-      gap: 10px;
-
-      .category-img {
-        width: 80px;
-        height: 80px;
-      }
-
-      .arrow {
-       display: none;
-      }
-    }
-
-    .title {
-      font-size: 16px !important;
-      padding: 5px 8px;
-      box-shadow: 4px 4px 0 black;
-    }
-
-    .active-title {
-      box-shadow: 4px 4px 0 #fbc638 !important;
-    }
-
-    .holographic-card {
-      height: 35px;
-      padding: 3px 95px;
-      border-radius: 10px;
-    }
-
-    .holographic-card h2 {
-      font-size: 16px;
-    }
-
-    .view-all-cat {
-      padding: 5px 20px;
-      font-size: 15px;
+    .filter-btn {
+      font-size: 14px;
+      padding: 8px 20px;
     }
   }
 `;
