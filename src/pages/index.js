@@ -1,4 +1,4 @@
-import { HomePage } from "@/component/homepage/homepage";
+import { HomePage } from "@/pages/Home/homepage";
 
 const HomeMainPage = (props) => {
   let propsData = props.propsData || {};
