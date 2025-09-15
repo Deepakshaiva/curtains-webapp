@@ -3,6 +3,7 @@ import { BiLogoFacebook } from "react-icons/bi";
 import { LiaInstagram } from "react-icons/lia";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { TiSocialTwitter } from "react-icons/ti";
+import Link from "next/link"; // Import Link component
 
 export const FooterWrapper = styled.footer`
   background-image: linear-gradient(19deg, #0a0909, #201f1feb);
@@ -125,25 +126,54 @@ export const Footer = () => {
         </div>
 
         <div className="footer-column">
+          <h3>Helps</h3>
+          <ul>
+            <li>Payment</li>
+            <li>Shipping</li>
+            <li>Cancellation & Returns</li>
+            <li>FAQ</li>
+          </ul>
+        </div>
+
+        <div className="footer-column">
+          <h3>Guides</h3>
+          <ul>
+            <li>How to measure Curtains</li>
+            <li>How to measure Blinds</li>
+            <li></li>
+          </ul>
+        </div>
+
+        <div className="footer-column">
+          <h3>Get In Touch</h3>
+          <ul>
+            <li>Main Road, Thatipur, Gwalior</li>
+            <li>+91 74159 80071</li>
+            <li>support@goveue.in</li>
+          </ul>
+        </div>
+          
+
+        <div className="footer-column">
           <h3>Contact</h3>
           <ul className="contact-list">
             <li className="contact-item">
               {" "}
-              <a href ="https://www.linkedin.com/company/go-venue/" target="_blank" rel="noopener noreferrer">
+              <Link href ="https://www.linkedin.com/company/go-venue/" target="_blank" rel="noopener noreferrer">
               <TiSocialLinkedin />
-              </a>
+              </Link>
             </li>
             <li className="contact-item">
               {" "}
-              <a href ="https://twitter.com/GoVenue1" target="_blank" rel="noopener noreferrer">
+              <Link href ="https://twitter.com/GoVenue1" target="_blank" rel="noopener noreferrer">
               <TiSocialTwitter />
-              </a>
+              </Link>
             </li>
             <li className="contact-item">
               {" "}
-              <a href ="https://www.facebook.com/GoVenue-104927303835707" target="_blank" rel="noopener noreferrer">
+              <Link href ="https://www.facebook.com/GoVenue-104927303835707" target="_blank" rel="noopener noreferrer">
               <LiaInstagram />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
