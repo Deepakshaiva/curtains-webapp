@@ -1,11 +1,12 @@
-import { HomePage } from "@/components/homepage";
+import { HomePage } from "@/pages/Home/homepage";
 
 const HomeMainPage = (props) => {
   let propsData = props.propsData || {};
-return(
-  <HomePage propsData={propsData}/>
-)
+  return (
+    <HomePage propsData={propsData} />
+  );
 };
+
 export default HomeMainPage;
 
 export const getServerSideProps = async () => {
@@ -41,22 +42,22 @@ export const getServerSideProps = async () => {
   const banner = [
     {
       tagline: "Where Comfort Meets Style",
-      title: "Summer Collection",
+      title: "Pleated Curtains",
       url:"https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/s/a/sandscape.jpg"
     },
     {
       tagline: "Dress Your Home, Impress Your Soul",
-      title: "Winter Collection",
+      title: "Hanging Style Curtains",
       url:"https://cdn.ddecor.com/media/wysiwyg/bannerslider/desktop/4_RMC.jpg"
     },
     {
       tagline: "Illuminate Your Space with Elegance",
-      title: "curtains",
+      title: "Blackout / Blockout:",
       url:"https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/a/f/african-vibes_theme_1920x1080-pix.jpg"
     },
     {
       tagline: "Transform Your Home with Our Best Sellers",
-      title: "curtains",
+      title: "Layered Curtains",
       url:"https://cdn.ddecor.com/media/mageplaza/bannerslider/banner/image/k/i/kilim_1920x1080-pix.jpg"
     },
     {
